@@ -19,6 +19,8 @@ export const SettingsInstance = writable<ISettings>({
   renderLabels: true,
   renderLabelsIcon: true,
 
+  // TODO export tag
+
   debugLogging: false,
 });
 

@@ -16,6 +16,12 @@ describe("Project tree parsing", () => {
         content: "",
         priority: 1,
         order: 1,
+        description: "",
+        url: "",
+        comment_count: 0,
+        completed: false,
+        assignee: 0,
+        assigner: 1,
       },
       {
         id: 2,
@@ -25,6 +31,12 @@ describe("Project tree parsing", () => {
         content: "",
         priority: 1,
         order: 2,
+        description: "",
+        url: "",
+        comment_count: 0,
+        completed: false,
+        assignee: 0,
+        assigner: 1,
       },
     ];
 
@@ -74,6 +86,12 @@ describe("Project tree parsing", () => {
         content: "",
         priority: 1,
         order: 1,
+        description: "",
+        url: "",
+        comment_count: 0,
+        completed: false,
+        assignee: 0,
+        assigner: 1,
       },
     ];
 
@@ -117,6 +135,12 @@ describe("Project tree parsing", () => {
         content: "",
         priority: 1,
         order: 1,
+        description: "",
+        url: "",
+        comment_count: 0,
+        completed: false,
+        assignee: 0,
+        assigner: 1,
       },
       {
         id: 2,
@@ -126,6 +150,12 @@ describe("Project tree parsing", () => {
         content: "",
         priority: 1,
         order: 2,
+        description: "",
+        url: "",
+        comment_count: 0,
+        completed: false,
+        assignee: 0,
+        assigner: 1,
       },
     ];
 

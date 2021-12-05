@@ -14,16 +14,28 @@ describe("Task tree parsing", () => {
         project_id: 0,
         section_id: 0,
         label_ids: [],
+        description: "",
+        url: "",
+        comment_count: 0,
+        completed: false,
+        assignee: 0,
+        assigner: 1,
       },
       {
         id: 2,
         priority: 2,
         order: 1,
         content: "Subtask",
-        parent: 1,
+        parent_id: 1,
         project_id: 0,
         section_id: 0,
         label_ids: [],
+        description: "",
+        url: "",
+        comment_count: 0,
+        completed: false,
+        assignee: 0,
+        assigner: 1,
       },
     ];
 
@@ -45,10 +57,16 @@ describe("Task tree parsing", () => {
         priority: 2,
         order: 1,
         content: "Subtask",
-        parent: 1,
+        parent_id: 1,
         project_id: 0,
         section_id: 0,
         label_ids: [],
+        description: "",
+        url: "",
+        comment_count: 0,
+        completed: false,
+        assignee: 0,
+        assigner: 1,
       },
     ];
 
@@ -72,6 +90,12 @@ describe("Task date parsing", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     };
 
     const task = new Task(apiTask);
@@ -93,6 +117,12 @@ describe("Task date parsing", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     };
 
     const task = new Task(apiTask);
@@ -111,6 +141,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     const second = new Task({
@@ -121,6 +157,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     assert.isBelow(first.compareTo(second, []), 0);
@@ -136,6 +178,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     const highPriority = new Task({
@@ -146,6 +194,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     assert.isBelow(highPriority.compareTo(lowPriority, ["priority"]), 0);
@@ -161,6 +215,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     const second = new Task({
@@ -171,6 +231,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     assert.isBelow(first.compareTo(second, []), 0);
@@ -191,6 +257,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     const second = new Task({
@@ -206,6 +278,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     assert.isBelow(first.compareTo(second, ["date"]), 0);
@@ -226,6 +304,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     const second = new Task({
@@ -241,6 +325,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     const third = new Task({
@@ -256,6 +346,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     assert.isBelow(first.compareTo(second, ["date"]), 0);
@@ -281,6 +377,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     const second = new Task({
@@ -296,6 +398,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     assert.isBelow(first.compareTo(second, ["priority", "date"]), 0);
@@ -316,6 +424,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     const second = new Task({
@@ -331,6 +445,12 @@ describe("Task comparisons", () => {
       project_id: 0,
       section_id: 0,
       label_ids: [],
+      description: "",
+      url: "",
+      comment_count: 0,
+      completed: false,
+      assignee: 0,
+      assigner: 1,
     });
 
     assert.isBelow(first.compareTo(second, ["date", "priority"]), 0);

@@ -43,7 +43,7 @@ export class TodoistApi {
   async createTask(
     content: string,
     options?: ICreateTaskOptions
-  ): Promise<Result<object, Error>> {
+  ): Promise<Result<ITaskRaw, Error>> {
     const url = "https://api.todoist.com/rest/v1/tasks";
     const data = { content: content, ...(options ?? {}) };
 
@@ -58,7 +58,9 @@ export class TodoistApi {
       });
 
       if (result.ok) {
-        return Result.Ok({});
+        result.json()
+          .then((task: ITaskRaw) => { return Result.Ok(task) })
+          .catch(err => { return Result.Err("Failed to parse Todoist response") });
       } else {
         return Result.Err(new Error("Failed to create task"));
       }

@@ -1,4 +1,5 @@
 import { App, Modal } from "obsidian";
+import type { ITaskRaw } from "../../api/raw_models";
 import type { TodoistApi } from "../../api/api";
 import CreateTaskModalContent from "./CreateTaskModalContent.svelte";
 
@@ -9,7 +10,8 @@ export default class CreateTaskModal extends Modal {
     app: App,
     api: TodoistApi,
     initialValue: string,
-    initialCursorPosition?: number
+    initialCursorPosition?: number,
+    callback?: (task: ITaskRaw) => void
   ) {
     super(app);
 
@@ -22,6 +24,7 @@ export default class CreateTaskModal extends Modal {
         close: () => this.close(),
         value: initialValue,
         initialCursorPosition: initialCursorPosition,
+        //
       },
     });
 

@@ -152,12 +152,12 @@ export class Task {
 
     tasks.forEach((task) => mapping.set(task.id, new Task(task)));
     tasks.forEach((task) => {
-      if (task.parent == null || !mapping.has(task.parent)) {
+      if (task.parent_id == null || !mapping.has(task.parent_id)) {
         return;
       }
 
       const self = mapping.get(task.id);
-      const parent = mapping.get(task.parent);
+      const parent = mapping.get(task.parent_id);
 
       self.parent = parent;
       parent.children.push(self);

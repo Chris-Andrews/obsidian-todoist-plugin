@@ -1,12 +1,18 @@
 import { SettingsInstance, ISettings, SettingsTab } from "./settings";
 import { TodoistApi } from "./api/api";
 import debug from "./log";
-import { App, Plugin, PluginManifest } from "obsidian";
+import { App, Editor, MarkdownView, Plugin, PluginManifest } from "obsidian";
 import TodoistApiTokenModal from "./modals/enterToken/enterTokenModal";
-import { getCurrentPageMdLink } from "./utils";
+import { getCurrentPageMdLink, parseLineTask } from "./utils";
 import CreateTaskModal from "./modals/createTask/createTaskModal";
 import QueryInjector from "./queryInjector";
 import { getTokenPath } from "./token";
+import type { ITaskRaw } from "./api/raw_models";
+import moment from "moment";
+
+// TODO tag configurable in settings
+// let settings: ISettings = null;
+// SettingsInstance.subscribe((value) => (settings = value));
 
 export default class TodoistPlugin extends Plugin {
   public options: ISettings;
@@ -78,6 +84,38 @@ export default class TodoistPlugin extends Plugin {
           currentSelection.length
         );
       },
+    });
+
+    this.addCommand({
+      id: "todoist-export-task",
+      name: "Export task to Todoist",
+      editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
+        let { line } = editor.getCursor();
+        let lineText = editor.getLine(line);
+        let parsedTask = parseLineTask(lineText);
+        if (checking) {
+          return parsedTask.hasTask;
+        }
+        if (parsedTask.hasTask) {
+          let task = parsedTask.task;
+          let callback = (task: ITaskRaw) => {
+            let base = lineText.replace(/\[.\]/, "[↗]").trimEnd();
+            // TODO tag configurable in settings
+            let tag = "#todoist-export";
+            let date = moment().format("YYYY-MM-DD");
+            let link = `[🔗](${task.url})`;
+            let newTaskLine = [base, tag, date, link].join(' ');
+            editor.setLine(line, newTaskLine);
+          };
+          new CreateTaskModal(
+            this.app,
+            this.api,
+            task,
+            task.length,
+            callback
+          );
+        }
+      }
     });
 
     const tokenPath = getTokenPath();

@@ -5,6 +5,25 @@ export function isPositiveInteger(str: string): boolean {
   return num != Infinity && String(num) === str && num > 0;
 }
 
+const taskRegex = /^\s*-\s\[[^\]]\]\s+/;
+
+export function parseLineTask(str: string): { hasTask: false } | { hasTask: true, task: string } {
+  let split = str.split(taskRegex);
+  if (split.length == 2) {
+    return { hasTask: true, task: split[1] };
+  } else {
+    return { hasTask: false };
+  }
+}
+
+export function annotateExportedTask(url: string) {
+  // trim trailing whitespace
+  // append space
+  // append tag
+  // append export date
+  // append link
+}
+
 export function toInt(str: string): number {
   return Math.floor(Number(str));
 }

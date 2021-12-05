@@ -14,20 +14,27 @@ export const UnknownSection: ISectionRaw = {
   name: "Unknown section",
 };
 
+// see: https://developer.todoist.com/rest/v1/#tasks
 export interface ITaskRaw {
   id: ID;
   project_id: ProjectID;
   section_id: SectionID;
-  label_ids: LabelID[];
-  priority: number;
   content: string;
+  description: string; // may contain markdown-formatted text
+  completed: boolean;
+  label_ids: LabelID[];
+  parent_id?: ID;
   order: number;
-  parent?: ID;
+  priority: number;
   due?: {
     recurring: boolean;
     date: string;
     datetime?: string;
   };
+  url: string;
+  comment_count: number;
+  assignee: number;
+  assigner: number;
 }
 
 export interface IProjectRaw {
