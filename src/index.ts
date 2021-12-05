@@ -3,7 +3,7 @@ import { TodoistApi } from "./api/api";
 import debug from "./log";
 import { App, Editor, MarkdownView, Plugin, PluginManifest } from "obsidian";
 import TodoistApiTokenModal from "./modals/enterToken/enterTokenModal";
-import { getCurrentPageMdLink, parseLineTask } from "./utils";
+import { getCurrentPageMdLink, getCurrentPageObsidianLink, parseLineTask } from "./utils";
 import CreateTaskModal from "./modals/createTask/createTaskModal";
 import QueryInjector from "./queryInjector";
 import { getTokenPath } from "./token";
@@ -97,9 +97,9 @@ export default class TodoistPlugin extends Plugin {
           return parsedTask.hasTask;
         }
         if (parsedTask.hasTask) {
-          let task = parsedTask.task;
+          let task = `[${parsedTask.task}](${getCurrentPageObsidianLink(this.app)})`;
           let callback = (task: ITaskRaw) => {
-            let base = lineText.replace(/\[.\]/, "[↗]").trimEnd();
+            let base = lineText.replace(/\[.\]/, "[x]").trimEnd();
             // TODO tag configurable in settings
             let tag = "#todoist-export";
             let date = moment().format("YYYY-MM-DD");

@@ -58,10 +58,14 @@ export class TodoistApi {
       });
 
       if (result.ok) {
-        result.json()
-          .then((task: ITaskRaw) => { return Result.Ok(task) })
-          .catch(err => { return Result.Err("Failed to parse Todoist response") });
+        try {
+          let task: ITaskRaw = await result.json();
+          return Result.Ok(task);
+        } catch (e) {
+          return Result.Err(new Error("Failed to parse Todoist response"));
+        }
       } else {
+        console.log(result);
         return Result.Err(new Error("Failed to create task"));
       }
     } catch (e) {

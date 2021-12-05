@@ -7,6 +7,7 @@
     ITodoistMetadata,
     TodoistApi,
   } from "../../api/api";
+import type { ITaskRaw } from "../../api/raw_models";
   import DateSelector from "./DateSelector.svelte";
   import LabelSelector from "./LabelSelector.svelte";
   import PriorityPicker from "./PriorityPicker.svelte";
@@ -17,6 +18,7 @@
   export let close: () => void;
   export let value: string;
   export let initialCursorPosition: number | undefined;
+  export let callback: (task: ITaskRaw) => void | undefined;
 
   let activeLabels: LabelOption[] = null;
   let activeProject: ProjectOption = null;
@@ -62,6 +64,7 @@
     const result = await api.createTask(value, opts);
 
     if (result.isOk()) {
+      if (callback) {callback(result.unwrap());}
       close();
       new Notice("Task created successfully.");
     } else {

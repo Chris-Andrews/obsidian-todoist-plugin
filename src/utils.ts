@@ -81,4 +81,20 @@ export function getCurrentPageMdLink(app: App): string {
   )}&file=${encodeURIComponent(filePath)})`;
 }
 
+export function getCurrentPageObsidianLink(app: App): string {
+  const vaultName = app.vault.adapter.getName();
+
+  const currentView = app.workspace.activeLeaf.view;
+
+  if (currentView.getViewType() != "markdown") {
+    return "";
+  }
+
+  const filePath: string = app.workspace.activeLeaf.view.getState().file;
+
+  return `obsidian://open?vault=${encodeURIComponent(
+    vaultName
+  )}&file=${encodeURIComponent(filePath)}`;
+}
+
 export const APP_CONTEXT_KEY = "obsidian_app";

@@ -17,6 +17,7 @@ export default class CreateTaskModal extends Modal {
 
     this.titleEl.innerText = "Create new Todoist task";
 
+    // TODO need to handle callback
     this.modalContent = new CreateTaskModalContent({
       target: this.contentEl,
       props: {
@@ -24,7 +25,7 @@ export default class CreateTaskModal extends Modal {
         close: () => this.close(),
         value: initialValue,
         initialCursorPosition: initialCursorPosition,
-        //
+        callback
       },
     });
 
